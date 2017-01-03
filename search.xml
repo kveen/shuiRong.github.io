@@ -206,6 +206,60 @@
     </entry>
     
     <entry>
+      <title><![CDATA[比较全面的 科学上网 FQ教程]]></title>
+      <url>http://yoursite.com/2016/09/04/%E6%AF%94%E8%BE%83%E5%85%A8%E9%9D%A2%E7%9A%84%20%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%20FQ%E6%95%99%E7%A8%8B/</url>
+      <content type="html"><![CDATA[<p><strong>写在前面：</strong></p>
+<ul>
+<li>相比于网上的大部分同类文章，我写的还是比较简单易懂的。</li>
+<li>墙这个事，细思极恐。恐的当然不是“墙”本身，而是时间久了，一些人觉得这才是“真正的互联网”。</li>
+</ul>
+<hr>
+<p>我下面只给出可用方法，具体教程自己搜。而且下面方法针对Windows 平台。Linux/Mac的话，都用上Linux/Mac了还不会科学上网可说不过去。</p>
+<hr>
+<ul>
+<li>修改hosts方法。<a href="https://laod.org/hosts/2016-google-hosts.html" target="_blank" rel="external">具体信息看老D博客。</a><ul>
+<li>网速慢，看个网页可以,视频/下载文件够呛。 </li>
+<li>有时候，可用的google IP会被防火墙检测到，进而加到屏蔽列表里。所以，这个hosts文件就需要经常更新，如何更新呢？其实就是检测谷歌IP—测试是否可用—加到文件里。这一任务挺重复且重，所以最宜交给脚本程序来搞定了（有能力的可以自己来，懒的话Github找现成的）</li>
+</ul>
+</li>
+<li>翻墙软件“自由门”<ul>
+<li>网速大部分时间都比较快，这时YouTube视频是没问题的。</li>
+</ul>
+</li>
+<li>Lantern(蓝灯）<ul>
+<li><a href="http://pan.baidu.com/s/1hsCs3pa" target="_blank" rel="external">如果此处链接失效，关键词Github Lantern自行搜索</a> 密码：ypf9</li>
+<li>傻瓜化操作，网速大部分时间挺快。视频没问题。</li>
+</ul>
+</li>
+<li>XX-Net<ul>
+<li>网速快，较稳定。</li>
+<li>需要一些设置。<a href="https://github.com/XX-net/XX-Net/wiki/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3" target="_blank" rel="external">参见中文文档</a></li>
+</ul>
+</li>
+<li>购买VPN服务<ul>
+<li>比上面的都稳定，网速也很快。就是第一次配置时较麻烦。</li>
+</ul>
+</li>
+<li>自己架设VPN<ul>
+<li>稳定性和网速 和架设者本人有紧密的关系。</li>
+</ul>
+</li>
+<li>Tor <ul>
+<li>安全性<strong>很高</strong>。就算你用它来做坏事，也基本不会出问题。当然作为一名社会主义建设者，你是不该做坏事的。</li>
+<li>网速快慢和使用的网桥不同而不同。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>博主推荐：</strong></p>
+<ul>
+<li>Windows平台： lantern</li>
+<li>Mac/Linux 平台： XX-Net</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Flask/部署/Heroku 目前应该是相关方向上最详细的一篇总结]]></title>
       <url>http://yoursite.com/2016/09/04/Flask%20%E9%83%A8%E7%BD%B2%20Heroku%20%E7%9B%AE%E5%89%8D%E5%BA%94%E8%AF%A5%E6%98%AF%E7%9B%B8%E5%85%B3%E6%96%B9%E5%90%91%E4%B8%8A%E6%9C%80%E8%AF%A6%E7%BB%86%E7%9A%84%E4%B8%80%E7%AF%87%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<p>﻿</p>
@@ -412,60 +466,6 @@ heroku/6589" target="_blank" rel="external">这个位置有两张图，点我看
 </blockquote>
 <p><strong>Setting–&gt;Build–&gt;Instant Run–&gt; Enable Instant Run to..前的对勾取消掉</strong></p>
 <p>再次Run，没问题。</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[比较全面的 科学上网 FQ教程]]></title>
-      <url>http://yoursite.com/2016/09/04/%E6%AF%94%E8%BE%83%E5%85%A8%E9%9D%A2%E7%9A%84%20%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%20FQ%E6%95%99%E7%A8%8B/</url>
-      <content type="html"><![CDATA[<p><strong>写在前面：</strong></p>
-<ul>
-<li>相比于网上的大部分同类文章，我写的还是比较简单易懂的。</li>
-<li>墙这个事，细思极恐。恐的当然不是“墙”本身，而是时间久了，一些人觉得这才是“真正的互联网”。</li>
-</ul>
-<hr>
-<p>我下面只给出可用方法，具体教程自己搜。而且下面方法针对Windows 平台。Linux/Mac的话，都用上Linux/Mac了还不会科学上网可说不过去。</p>
-<hr>
-<ul>
-<li>修改hosts方法。<a href="https://laod.org/hosts/2016-google-hosts.html" target="_blank" rel="external">具体信息看老D博客。</a><ul>
-<li>网速慢，看个网页可以,视频/下载文件够呛。 </li>
-<li>有时候，可用的google IP会被防火墙检测到，进而加到屏蔽列表里。所以，这个hosts文件就需要经常更新，如何更新呢？其实就是检测谷歌IP—测试是否可用—加到文件里。这一任务挺重复且重，所以最宜交给脚本程序来搞定了（有能力的可以自己来，懒的话Github找现成的）</li>
-</ul>
-</li>
-<li>翻墙软件“自由门”<ul>
-<li>网速大部分时间都比较快，这时YouTube视频是没问题的。</li>
-</ul>
-</li>
-<li>Lantern(蓝灯）<ul>
-<li><a href="http://pan.baidu.com/s/1hsCs3pa" target="_blank" rel="external">如果此处链接失效，关键词Github Lantern自行搜索</a> 密码：ypf9</li>
-<li>傻瓜化操作，网速大部分时间挺快。视频没问题。</li>
-</ul>
-</li>
-<li>XX-Net<ul>
-<li>网速快，较稳定。</li>
-<li>需要一些设置。<a href="https://github.com/XX-net/XX-Net/wiki/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3" target="_blank" rel="external">参见中文文档</a></li>
-</ul>
-</li>
-<li>购买VPN服务<ul>
-<li>比上面的都稳定，网速也很快。就是第一次配置时较麻烦。</li>
-</ul>
-</li>
-<li>自己架设VPN<ul>
-<li>稳定性和网速 和架设者本人有紧密的关系。</li>
-</ul>
-</li>
-<li>Tor <ul>
-<li>安全性<strong>很高</strong>。就算你用它来做坏事，也基本不会出问题。当然作为一名社会主义建设者，你是不该做坏事的。</li>
-<li>网速快慢和使用的网桥不同而不同。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p><strong>博主推荐：</strong></p>
-<ul>
-<li>Windows平台： lantern</li>
-<li>Mac/Linux 平台： XX-Net</li>
-</ul>
 ]]></content>
     </entry>
     
