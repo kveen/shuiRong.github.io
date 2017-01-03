@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[你以为你真的懂jQuery?]]></title>
+      <url>http://yoursite.com/2016/10/21/%E4%BD%A0%E4%BB%A5%E4%B8%BA%E4%BD%A0%E7%9C%9F%E7%9A%84%E6%87%82jQuery/</url>
+      <content type="html"><![CDATA[<p>题目说的这个问题，我是问我自己的。因为我今天发现对于Query，我其实只能算“半懂”，这很可怕，不同于“不懂”和“真懂”，“半懂”的人虽然嘴上会承认自己对概念理解不深，但是心里是不会想这么多的，特别是写代码时。结果总是出现莫名奇妙的Bug,搞得怀疑这，怀疑，最后发现，哦，他喵的是这呀。</p>
+<p>以上是自我心理分析。</p>
+<hr>
+<p>进入正题<br>从一个小例子开始：<br>HTML:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&apos;work&apos;&gt;</div><div class="line">            &lt;p&gt;Work Time&lt;/p&gt;</div><div class="line">            &lt;span id=&apos;what&apos;&gt;A&lt;/span&gt;&lt;span&gt;B&lt;/span&gt;&lt;span&gt;C&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>JS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&apos;#work span:nth-child(1)&apos;).on(&apos;click&apos;,function()&#123;</div><div class="line">        console.log(&apos;WTF&apos;);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+<p>结果点击第一个span，也就是A,并没有输出WTF。如果选择器直接用ID <code>#what</code>，就正常输出WTF。</p>
+<p><em>你知道是哪里的问题吗？</em></p>
+<p>在今天之前我是这么理解 <code>#work span:nth-child(1)</code>的：<br>首先匹配 #work（是P 和 SPAN 的父元素），然后找span,发现有三个span,锁定,然后匹配span中的第一个。这是错误的理解。</p>
+<p>我在群里问问题的时候，发现有好几个人都是这么理解的，还有几个人理解成： 先匹配#work 然后匹配span,然后找span的第三个child。也是错误的理解。</p>
+<p><a href="http://www.jquery123.com/first-child-selector/" target="_blank" rel="external">MDN的first-child页</a>给的例子是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">  &lt;div&gt;</div><div class="line">    &lt;span&gt;John,&lt;/span&gt;</div><div class="line">    &lt;span&gt;Karl,&lt;/span&gt;</div><div class="line">    &lt;span&gt;Brandon&lt;/span&gt;</div><div class="line"> </div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div&gt;</div><div class="line">    &lt;span&gt;Glen,&lt;/span&gt;</div><div class="line">    &lt;span&gt;Tane,&lt;/span&gt;</div><div class="line">    &lt;span&gt;Ralph&lt;/span&gt;</div><div class="line"> </div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">$(&quot;div span:first-child&quot;)</div><div class="line">    .css(&quot;text-decoration&quot;, &quot;underline&quot;)</div><div class="line">    .hover(function () &#123;</div><div class="line">          $(this).addClass(&quot;sogreen&quot;);</div><div class="line">        &#125;, function () &#123;</div><div class="line">          $(this).removeClass(&quot;sogreen&quot;);</div><div class="line">        &#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>它在例子的上面还说了这么一句话：<br><code>给每个匹配的 div 中查找第一个 span，并加上下划线及增加鼠标悬停效果。</code><br>注意它这么说“第一个span”，我总觉得这句话不妥当，很容易就理解成了上面说的我之前的错误理解，也就是:span是不是父元素的第一个child不重要，重要的是它是不是span里面的第一个。</p>
+<p>我觉得前半句应该这么说：给每个匹配的div中查找第一个是span的child。</p>
+<p>尽管文档描述里说：<strong>选择所有父级元素下的第一个子元素。</strong>但是看到例子那里的那句话时，我却忘了。</p>
+<p><strong>深入理解文档，不要让自己对概念半懂.</strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[跨域访问的解决方法]]></title>
+      <url>http://yoursite.com/2016/10/16/%E8%B7%A8%E5%9F%9F%E8%AE%BF%E9%97%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p><strong>10-18补充：</strong><br>解决跨域的问题，只要你清楚这两个概念就够了：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="external">跨域访问（Cross-site HTTP request）的详细介绍。</a></li>
+<li><a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="external">谈谈JSON和JSONP的区别</a></li>
+</ul>
+<hr>
+<p><em>我在调用Wiki的API时又遇到了跨域访问问题，第二次了</em></p>
+<blockquote>
+<p>No ‘Access-Control-Allow-Origin’ header is present on the requested resource.<br>Origin ‘null’ is therefore not allowed access.</p>
+</blockquote>
+<p>第一次是调用聚合天气的数据时，我用jQuery的.ajax()获取数据时遇到了这个问题。当时着实困扰了我好久。在网上搜了搜也还是不知道如何解决。后来参考了别的同学的代码，看他在获取数据时用的是.getJSON()，我也换成了这方法，果然没有上面的问题了。但是我不知道问题的原因，以及为何换个方法就不会出现。现在还是不知道（过段时间http协议相关的书还是要看的，看了之后应该就知道这个问题该如何解决了吧）。</p>
+<hr>
+<p>这个问题是如何出现的，以及如何解决网上也有方法，不过要是没有解决你的问题的话，不妨看看这个：</p>
+<blockquote>
+<p>If you want to load an api URL from another domain, you should use $.getJSON and <strong>provide a callback=yourFunction (or similar) to the URL</strong> so you are in fact requesting a JSONP.<br><a href="https://www.mediawiki.org/wiki/Topic:Smsi5v9mg0po0dn0" target="_blank" rel="external">出处</a></p>
+</blockquote>
+<p>上面黑体句子的意思，重点说下：</p>
+<p>在调用Wiki的API时，第一次我是这么写的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var url_endpoint = &apos;https://en.wikipedia.org/w/api.php?action=opensearch&amp;prop=revisions&amp;rvprop=content&amp;format=json&amp;search=&apos;;</div><div class="line">var search_text = &apos;taylor swift&apos;; //这个搜索信息是动态获取的，为了方便，我这里写死了。</div><div class="line">var url = url_endpoint + search_text;</div><div class="line"></div><div class="line">$.ajax(&#123;</div><div class="line">    url: url,</div><div class="line">    dataType: json,</div><div class="line">    success:function(data)&#123;</div><div class="line">        console.log(data[1]);</div><div class="line">    &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+<p>结果出问题，就是文章开始说的那个。</p>
+<p>第二次我写时，只改了方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">......//跟上面一样。</div><div class="line"></div><div class="line">$.getJSON(url,&#123;</div><div class="line">            dtype: &apos;json&apos;,</div><div class="line">        &#125;,function(data)&#123;</div><div class="line">            console.log(1,data[1]);</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
+<p>还是同样问题。</p>
+<p>然后我又去看上面那段英文，认真想了想黑体字部分的意思，写了第三遍：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var url = &apos;https://en.wikipedia.org/w/api.php?callback=?&apos;; //看这里有变化了</div><div class="line">var search_text = &apos;taylor swift&apos;;</div><div class="line"></div><div class="line">$.getJSON(url,&#123;</div><div class="line">            dtype: &apos;json&apos;,</div><div class="line">            search: search_text,</div><div class="line">            format: &apos;json&apos;,</div><div class="line">            action: &apos;opensearch&apos;,</div><div class="line">        &#125;,function(data)&#123;</div><div class="line">            console.log(1,data[1]);</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
+<p>correct.</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JS构建正则时的一处致命细节，请注意]]></title>
+      <url>http://yoursite.com/2016/09/24/JS%E6%9E%84%E5%BB%BA%E6%AD%A3%E5%88%99%E6%97%B6%E7%9A%84%E4%B8%80%E5%A4%84%E8%87%B4%E5%91%BD%E7%BB%86%E8%8A%82%EF%BC%8C%E8%AF%B7%E6%B3%A8%E6%84%8F/</url>
+      <content type="html"><![CDATA[<p>JavaScript构建正则对象有两种方法：</p>
+<ul>
+<li>字面量: /ab+c/i;</li>
+<li>构造函数: （还可以细分一下）<ul>
+<li>new RegExp(‘ab+c’, ‘i’);</li>
+<li>new RegExp(/ab+c/, ‘i’);</li>
+</ul>
+</li>
+</ul>
+<p>当我们构建正则对象时，会有一些特殊字符，需要特殊处理，也就是转义。<br>JavaScript的转义符和其他语言的一样： \  反斜杠。<br><strong>需要注意的是：</strong><br>当用正则构造函数创造正则对象时，转义需要两个 \\ 反斜杠。当然，字面量时一个就够了。<br>以下两个是等价的：</p>
+<blockquote>
+<p>var re = new RegExp(“\\w+”);<br>var re = /\w+/;</p>
+</blockquote>
+<hr>
+<p>刚被这两个反斜杠坑了。差点怀疑人生…</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[一道JS题引发出来的一些话]]></title>
+      <url>http://yoursite.com/2016/09/21/%E4%B8%80%E9%81%93JS%E9%A2%98%E5%BC%95%E5%8F%91%E5%87%BA%E6%9D%A5%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%9D/</url>
+      <content type="html"><![CDATA[<hr>
+<p><strong>FCC上的一道题：</strong></p>
+<blockquote>
+<p>写一个 function，它遍历一个对象数组（第一个参数）并返回一个包含相匹配的属性-值对（第二个参数）的所有对象的数组。如果返回的数组中包含 source 对象的属性-值对，那么此对象的每一个属性-值对都必须存在于 collection 的对象中。</p>
+</blockquote>
+<p>eg:</p>
+<blockquote>
+<p>where([{ “a”: 1 }, { “a”: 1 }, { “a”: 1, “b”: 2 }], { “a”: 1 }) 应该返回 [{ “a”: 1 }, { “a”: 1 }, { “a”: 1, “b”: 2 }]。<br>where([{ “a”: 1, “b”: 2 }, { “a”: 1 }, { “a”: 1, “b”: 2, “c”: 2 }], { “a”: 1, “b”: 2 }) 应该返回 [{ “a”: 1, “b”: 2 }, { “a”: 1, “b”: 2, “c”: 2 }]。</p>
+</blockquote>
+<p>“不难，但挺麻烦的” 这就是我弄懂题目后的第一感受。而接下来的事实证明，真是够麻烦的。（对我来说。）<br>因为他喵的，我写了有40行代码，用了4、5个for循环。花了我一个小时在这个题上面。</p>
+<p>然后我就去看大神的solution了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function whatIsInAName(collection, source) &#123;</div><div class="line">  var arr = [];</div><div class="line">  var keys = Object.keys(source);</div><div class="line">  </div><div class="line">  return collection.filter(function(item) &#123;</div><div class="line">    return keys.every(function(key) &#123;</div><div class="line">      return item.hasOwnProperty(key) &amp;&amp; item[key] === source[key];</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">whatIsInAName([&#123; &quot;a&quot;: 1, &quot;b&quot;: 2 &#125;, &#123; &quot;a&quot;: 1 &#125;, &#123; &quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 2 &#125;], &#123; &quot;a&quot;: 1, &quot;c&quot;: 2 &#125;);</div></pre></td></tr></table></figure>
+<p>高下立分，服。<br>在这之前没进过every()，赶紧去查了查用法。</p>
+<hr>
+<p><strong>写在后面</strong></p>
+<p>关于这个题目的解答我用的基本都是底层方法。for循环，if else ，能不底层么嘛。但是我觉得实在是不可取：<br><em>这样写，代码很长，而且逻辑混乱。可能过了几天自己回来看就看不懂了。而且，显示不出来水平2333</em></p>
+<p><strong>JavaScript 语言设计的时候封装了那么些方法干啥吃的，不就是让我们少造轮子，不浪费生命在重复的东西上吗？</strong></p>
+<p>以上。</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Web前端：第一个半年计划（16-9--2017-1）]]></title>
+      <url>http://yoursite.com/2016/09/12/Web%E5%89%8D%E7%AB%AF%EF%BC%9A%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%8A%E5%B9%B4%E8%AE%A1%E5%88%92%EF%BC%8816-9-2017-1%EF%BC%89/</url>
+      <content type="html"><![CDATA[<p><strong>方向选择</strong><br>暑假时就琢磨这么个问题：开学后到底学什么？<br>当时我面临着这么几个选择：</p>
+<ul>
+<li>Android</li>
+<li>Python后端</li>
+<li>Python爬虫</li>
+<li>Web前端</li>
+</ul>
+<p>最后我选了Web前端，一个原因是：入门易（相对），见效快（交互型）。另一个原因是：在努力半年后的寒假，Web前端最有可能让我找到实习。（这很实在）。当然还有一些其他原因比如说：路线方向清晰…</p>
+<p><strong>方向既然定了，那么这个半年计划是这样的：</strong></p>
+<p>我的这个计划参考了许多知乎上的回答，太多而且很单一（毕竟说来说去就那么些技能点）。就不列详细出处了。</p>
+<p>技能树我这里就不单独列了，就那么些，随便Google一下就找到了。<br>直接上学习资源吧：（学过和将学的都有）</p>
+<ul>
+<li>《Head First Html And Css》 –done</li>
+<li>《JavaScript DOM 编程艺术》 –done</li>
+<li>《JavaScript 高级程序设计》（这本我一定看不完，能看一半就不错了。）–ing</li>
+<li><a href="https://freecodecamp.cn" target="_blank" rel="external">FCC社区</a>,上面的题我也做不完，毕竟后端也牵涉了。但我会做完前端部分，把社区的前端工程师的证书给拿了。  –ing</li>
+<li><a href="https://try.jquery.com" target="_blank" rel="external">Code School上的jQuery部分</a>  –done 16-9-16</li>
+</ul>
+<hr>
+<p>过段时间后看效果如何，达到自己要求的话，就重新安排时间，把计算机基础、数据结构、算法 补一下。然后就试着找实习了。</p>
+<hr>
+<p>2016-9-21：补充新课程</p>
+<ul>
+<li><a href="http://open.163.com/special/opencourse/algorithms.html" target="_blank" rel="external">算法导论</a> –ing</li>
+<li><a href="http://open.163.com/special/opencourse/cs50.html" target="_blank" rel="external">计算机科学CS50</a> –ing</li>
+</ul>
+<hr>
+<p><strong>后记：</strong><br>(半年后回来补充下)</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JavaScript:就这么个弱智bug，折腾了我两小时]]></title>
+      <url>http://yoursite.com/2016/09/11/JavaScript%EF%BC%9A%E5%B0%B1%E8%BF%99%E4%B9%88%E4%B8%AA%E5%BC%B1%E6%99%BAbug%EF%BC%8C%E6%8A%98%E8%85%BE%E4%BA%86%E6%88%91%E4%B8%A4%E5%B0%8F%E6%97%B6/</url>
+      <content type="html"><![CDATA[<p>悲剧是这样发生的：看完了书上一个小例子，打算合上书自己实现一下。<br>树是这样的：<br>Web/main.html<br>Web/js/testjs.js<br>main.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html lang=&quot;zh-CN&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;title&gt; This is a test&lt;/title&gt;</div><div class="line">    &lt;script type=&quot;text/javascript&quot; src= &quot;js/testjs.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">&lt;body&gt;</div><div class="line">    &lt;p&gt; this is a p&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>testjs.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">window.onload= function wtf()&#123;</div><div class="line">    alert(&quot;3&quot;);</div><div class="line">    var emm = document.createElement(&quot;em&quot;);</div><div class="line">    var p = document.getElementsByTagName(&quot;p&quot;).[0];</div><div class="line">    p.appendChild(emm);</div><div class="line">    var text = document.createTextNode(&quot;this is em&quot;);</div><div class="line">    emm.appendChild(text);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>错误信息： js文件无效。<br>一开始我以为是相对路径的原因导致，js文件引用出错。就改，上网看js外部文件引用相关博客，再改，还是不行。挫败感越来越强，最后实在发现不出来哪里错了。去了网上（Q群/Gitter)问其他人。然后在Gitter上很快有人回我:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">okey</div><div class="line">you js linked correctly</div><div class="line">but your js code is wrong</div><div class="line">you need semicolon (optional) on 8 line</div><div class="line">line 4 should look like this var p = document.getElementsByTagName(&quot;p&quot;);</div><div class="line">you are getting single element not array</div></pre></td></tr></table></figure></p>
+<p>尽管他说的也有些问题：他说getElementsByTagName()，当只得到一个元素时，返回值不是数组。但其实并不是，仍是个长度为1的数组。但是就是因为他的话，我又检查了一遍js文件。这次注意到：尼玛，TagName(“p”).[0]; 这里，调用数组不能用 . 操作符。就这么一个不起眼的问题，废了我俩小时。而我检查了好多遍，居然没有发现。 </p>
+<ul>
+<li>究其原因，还是因为我潜意识里坚持认为是错在“js外部文件引用”。 </li>
+</ul>
+<p>在搜索资料过程中，发现了一个知识点，这刷新了我之前的认知：就像之前学过的Python/Java一样，我以为在运行JavaScript文件时，编译器（对应浏览器）正常会执行代码，直到遇到错误停止。也就是说，我以为，就算是JS代码有错误，但我在最上面安置一个alert(); 总会执行吧。（这样在每一步放个alert()就可以调试代码了。）但事实是<strong>如果JS代码出错，一句代码都不会执行的</strong>。这也是之前我坚持认为是JS代码引用出错的直接原因。</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[天才的想法：程序员写技术博客]]></title>
+      <url>http://yoursite.com/2016/09/05/%E5%A4%A9%E6%89%8D%E7%9A%84%E6%83%B3%E6%B3%95%EF%BC%9A%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%99%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/</url>
+      <content type="html"><![CDATA[<p>##天才的想法：<br><em>鼓励程序员写博客，特别是把自己学习技术过程中遇到的一些问题或者是想法分享出来。</em>这真是一个天才的想法！这种前人栽树，后人乘凉的行为对后人的影响是多么巨大已估量不出来。</p>
+<p>拿我个人来说说。从一年前Java入门到现在，（互联网发展至今，博客量积累到现在，）几乎所有我遇到的问题，不论是技术上的还是非技术上的，都能在网上找到合适的答案。这句话，从入坑至今，我听到过太多太多次了。非常同时这种观点，它已深深地影响到了我。</p>
+<hr>
+<p>最后：<br><strong>R(ead)S(earch)A(sk)大法好。</strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[这些年读书的一些破事儿]]></title>
+      <url>http://yoursite.com/2016/09/04/%E8%BF%99%E4%BA%9B%E5%B9%B4%E8%AF%BB%E4%B9%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E7%A0%B4%E4%BA%8B%E5%84%BF/</url>
+      <content type="html"><![CDATA[<p>早就想找个机会写写我这些年读书的破事儿了，一次在知乎上看到了个关于“阅读困难症”的问题，就顺便着总结了这些年（其实是从6、7岁开始）读书的经历。</p>
+<p>这里不复制过来了。<a href="https://www.zhihu.com/question/31566591/answer/106730426" target="_blank" rel="external">贴个链接</a>，诸君过去看吧。看完觉得不错，就点个赞吧。</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[AndroidStudio 模拟器选择问题]]></title>
+      <url>http://yoursite.com/2016/09/04/AndroidStudio%20%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%80%89%E6%8B%A9%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<p>部署好安卓开发环境后，发现：</p>
+<ul>
+<li>Windows下 AMD 的处理器居然没法使用 Android Studio自带 的模拟器</li>
+</ul>
+<p>网上查了一波： windows系统下用 Intel 的处理器才能使用AS自带的模拟器。</p>
+<ul>
+<li>但是linux平台下AS，可以用AMD的CPU启动AS自带模拟器。</li>
+</ul>
+<p>暂时不打算买Intel的处理器，而且不打算装Linux系统。也不想用虚拟机装双系统，身边跟没有Android手机可以用……</p>
+<p>后来无意中发现一神器：Genymotion 。成功的解决了Windows+AMD的CPU 的Android模拟器问题</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Javascript：正则表达式里使用变量的方法]]></title>
+      <url>http://yoursite.com/2016/09/04/Javascript%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%87%8C%E4%BD%BF%E7%94%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p>﻿</p>
+<p>做FFC算法题的时候，想把变量用到正则模式里。结果在正则字面量里，不论如何加都是不行的，正则模式都会把变量当作表面上的字符串来处理。</p>
+<p>只好用Google大法了，找到办法：<br>正则有两种定义方法：</p>
+<pre><code>* 字面量定义。（不可以使用变量。）
+* 正则对象定义。（可以使用变量。）
+</code></pre><p>文档：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JavaScript：当实参多于形参时的处理方法]]></title>
+      <url>http://yoursite.com/2016/09/04/JavaScript%EF%BC%9A%E5%BD%93%E5%AE%9E%E5%8F%82%E5%A4%9A%E4%BA%8E%E5%BD%A2%E5%8F%82%E6%97%B6%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<ul>
+<li>如果你调用一个函数，当这个函数的参数数量比它显式声明的参数数量更多的时候，你就可以使用 arguments 对象。</li>
+<li>这个技术对于参数数量是一个可变量的函数来说比较有用。</li>
+<li>你可以用 arguments.length 来得到参数的数量，然后可以用 arguments object 来对每个参数进行处理。 (想要得到当一个函数定义时的该函数的参数数量, 请使用 Function.length 属性。)</li>
+</ul>
+<p>文档：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Flask/部署/Heroku 目前应该是相关方向上最详细的一篇总结]]></title>
+      <url>http://yoursite.com/2016/09/04/Flask%20%E9%83%A8%E7%BD%B2%20Heroku%20%E7%9B%AE%E5%89%8D%E5%BA%94%E8%AF%A5%E6%98%AF%E7%9B%B8%E5%85%B3%E6%96%B9%E5%90%91%E4%B8%8A%E6%9C%80%E8%AF%A6%E7%BB%86%E7%9A%84%E4%B8%80%E7%AF%87%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<p>﻿</p>
+<p>本文首发于<a href="http://cocode.cc/t/flasky-heroku/6589" target="_blank" rel="external">CoCode社区</a><br><strong>写在前面</strong></p>
+<ul>
+<li>看的书是《Flask Web 开发》</li>
+<li>win7 64bit 系统。</li>
+<li>有些东西需要科学上网，[正好前几天为我弟弟普及了下科学上网]</li>
+</ul>
+<p>(<a href="http://pan.baidu.com/s/1qYVFeMw" target="_blank" rel="external">http://pan.baidu.com/s/1qYVFeMw</a>)</p>
+<ul>
+<li>从开始部署到成功，花了我3、4天。期间尝试过SAE（不知去查），没成。</li>
+<li>这几天里，我部署了有十几次。（这十几次的意思是，从17c开始，重来。</li>
+</ul>
+<p>）</p>
+<ul>
+<li>我把论坛里用关键词 “flask 部署” 搜出来的部署在heroku上的文章反复看了不知道几遍了。反正</li>
+</ul>
+<p>烂熟了。所以发现了一些他们各自的问题。</p>
+<ul>
+<li>所以，这次总结我不打算再像其他人一样从开始写了（你可以小声的说宝宝懒）。下面我以三篇论坛</li>
+</ul>
+<p>里的帖子为例，说说如何部署在heroku上。</p>
+<hr>
+<ul>
+<li>@guog  <a href="http://cocode.cc/t/first-update-heroku/3711" target="_blank" rel="external">把我点开先放一边</a></li>
+<li>@Rain  <a href="http://cocode.cc/t/flask-heroku/4253" target="_blank" rel="external">把我点开先放一边</a></li>
+</ul>
+<hr>
+<p><strong>正文预备</strong><br>宝宝心里苦啊，但是宝宝不说话。放一张漫画大家感受下：<br> <a href="http://www.cxyym.com/wp-content/uploads/2014/07/53_%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.gif" target="_blank" rel="external">点我看漫画</a><br>西乔说到我心里去了。</p>
+<p><strong>正文开始</strong><br> <em>来，我们看 @guog 的帖子。</em></p>
+<p>1、2 我的坑是：</p>
+<blockquote>
+<p>然后全部copy到你的app目录下</p>
+</blockquote>
+<ul>
+<li>前几次，我其实没有理解他的话，我的做法曾是：把从作者那里clone的flasky文件夹下的所有东西，</li>
+</ul>
+<p>全部copy到自己的文件夹下（就是从自己github上clone下来后的那个myapp文件夹）。</p>
+<ul>
+<li>这时注意：这两个文件夹下都有.git文件夹（这是个隐藏的文件夹，记得设置查看隐藏文件），我在</li>
+</ul>
+<p>copy时会出现：是否替换还是什么的。我选择的是全部替换。但错了。我要是都替换了。那 @guog 的这</p>
+<p>么写的目的是啥。替换了还不如就在作者的文件夹（flasky）下操作呢。</p>
+<ul>
+<li>就这样，最后 run python manage.py deploy 时我遇到报错了，谷歌过…最后去stackoverflow上提</li>
+</ul>
+<p>问了：<br> <a href="https://stackoverflow.com/questions/37763278/how-to-chain-two-migrations-through-migraions-ids-and-to-create-a-linear-chain-t" target="_blank" rel="external">详情点这里</a>，《flask web 开发》的作者</p>
+<p>回答了我的白痴问题（当然是现在这么觉得了，当时差点被搞死），觉得还是挺不好意思的。</p>
+<ul>
+<li>后来看了大神的在stackoverflow上的回答，看了他专门针对此问题写的文章。并按照文章中给的方法</li>
+</ul>
+<p>试这解决我这个 linear sequence 问题，但是没成功。后来灵光一闪，突然就知道问题出在哪了。</p>
+<ul>
+<li>看下上面，就是在copy作者flasky文件下的文件时，<strong>不要copy作者的.git 文件夹</strong>。README.md文</li>
+</ul>
+<p>件无所谓。</p>
+<ul>
+<li>至于requirements.txt文件，我曾用的是 pip freeze &gt; requirements.txt 得来的文件。但是，**或</li>
+</ul>
+<p>许**是因为一些模块版本原因导致的模块不兼容，在我成功 heroku run python manage.py deploy 并</p>
+<p>成功访问网站后，出现不能成功确认用户（发送确认邮件后，点击邮件内URL，出来的页面仍然是你的账</p>
+<p>户没有确认。用heroku logs 查看报错信息：typeerror ‘nonetype’ object has no attribute </p>
+<p>‘<strong>getitem</strong>‘ ）</p>
+<ul>
+<li>这个问题，我google 了一番，看了几个stackoverflow上的回答。仍不能解决问题。因为我确认，相</li>
+</ul>
+<p>关代码并没有出现问题。（而且，本地测试一切正常）</p>
+<ul>
+<li>还是灵光一闪，（真的，骗人是小狗。）我想：可能是requirements.txt文件的原因。我就把 @guog </li>
+</ul>
+<p>帖子里的 文件内容copy到了我那个里面。ok,解决账户确认问题。</p>
+<hr>
+<p>3  步我的坑：</p>
+<ul>
+<li>推荐用 sina、或者 qq 的stmp 服务，gmail的我试过，没有搞定。对应的端口号你去搜吧。我用的</li>
+</ul>
+<p>sina, sina的是25。</p>
+<ul>
+<li>邮件抬头我没有改，我曾想改成中文的，却出现编码问题（因为急着网站上线，暂时不想去解决额外</li>
+</ul>
+<p>的问题。）</p>
+<ul>
+<li>管理员邮箱这么改：<br>FLASKY_MAIL_SENDER = “xxxxxxxx@xxxx.com” #不要留着尖括号和前面的英文。不信你本地测试下这</li>
+</ul>
+<p>两种。</p>
+<hr>
+<p>下面第二步的<br>4 的坑：</p>
+<ul>
+<li>或许你安装模块的时候，psycopg2 这个会最后会安装失败，这个时候，你把requirements.txt 文件</li>
+</ul>
+<p>里的psycopg2 先删掉，然后pip install -r requiremens.txt 然后，单独安装psycopy2 :pip install </p>
+<p>psycopg2。最后再把psycopg2 加到requirements.txt文件里。</p>
+<hr>
+<p>6 的坑：</p>
+<ul>
+<li>打开data-dev.sqlite 文件（需要下载一个软件才能打开数据库文件：DB Browser for SQLite 官网</li>
+</ul>
+<p>下载去吧。需要科学上网。）<a href="http://cocode.cc/t/flasky-
+heroku/6589" target="_blank" rel="external">这个位置有两张图，点我看</a><br>第一张那个看看有内容没，没得话新建记录，改成我那样。第二张，属性role_id那里值是NULL的话加上</p>
+<p>。懂什么意思吧？</p>
+<hr>
+<p>下面第三步，我们看 @Rain 的帖子。</p>
+<p>1 的说明：</p>
+<ul>
+<li><p>heroku 免费账户，最多只能存在5个app，想删除的话：</p>
+<p> heroku apps<br> heroku apps:destroy your_app_name</p>
+</li>
+</ul>
+<p>这几个命令是通过 heroku apps –h (或者heroku –h)学会的。</p>
+<hr>
+<p>4  的坑：</p>
+<ul>
+<li>至今我仍不懂论坛里不光是 @Rain ，还有其他人说的db.session.commit()<br>是什么意思。我曾把我 <strong>所有程序</strong> 里的db.session.add()后面都加上这个。但是报错了。</li>
+</ul>
+<p>indentation error:unexpected indent. 我又重来了一遍，这次没有所有的地方都加</p>
+<p>db.session.commit()。</p>
+<ul>
+<li>现在我想想，大家讨论这个事情，大部分集中在15年12月份，说什么不是flask的问题，是heroku的坑</li>
+</ul>
+<p>。我想，或许当时是这样吧。但是现在貌似已经不存在那个问题了。所以， **不要纠结论坛里那些人15</p>
+<p>年12月份讨论的这个问题了**</p>
+<ul>
+<li>忽略4的这个添加。</li>
+</ul>
+<hr>
+<p>5 ：</p>
+<ul>
+<li>我是win7 64bit，没看这一步在说啥。</li>
+</ul>
+<hr>
+<p>部署过程的：<br>1 的坑：</p>
+<ul>
+<li>我曾在后面git push heroku master 时，报错：push rejected…..</li>
+<li><a href="https://segmentfault.com/q/1010000005672524" target="_blank" rel="external">错误详情点我</a>，比较苦逼的是，在segmentfault </li>
+</ul>
+<p>上提的这个问题，他喵的还是我自己回答的。</p>
+<ul>
+<li>顺便一提，解决方法，我还是灵光一闪，想到的。（不骗人）</li>
+<li>容我扯个淡：很久之前在知乎上看到这个问题，大概是：国内程序猿圈子有了stackoverflow，还有必<br>要存在像segmentfault这样的专注于中文的平台吗？</li>
+<li>我觉得没有，因为对一个 <strong>程序猿</strong> 来说，能阅读英文的专业性文章（由词典，划词插件帮助也行</li>
+</ul>
+<p>）应该像科学上网是 <strong>标配</strong> 一样 是标配。否则，走不了多远吧。</p>
+<ul>
+<li>heroku上的帮助文档关于buildpacks,我也看了，最后解决方法看上面segmentfault链接。</li>
+</ul>
+<hr>
+<p>2 的坑：</p>
+<ul>
+<li>其实在意初次建立数据库时，并不会看到 @Rain 说的看到像<br>HEROKU_POSTGRESQL_MAUVE_URL<br>这样的内容，而是一些像：<br>postgresql-xxxxx-xxxxx<br>这样的数据库名称。</li>
+</ul>
+<hr>
+<p>4、5 步说明：</p>
+<ul>
+<li>我没试。直接略过了。</li>
+</ul>
+<hr>
+<p>7 的说明：</p>
+<ul>
+<li>到这一步，就像 @Rain 说的，首先git status .检查一下，是不是所有改动都已提交到你的本地git </li>
+</ul>
+<p>仓库。</p>
+<ul>
+<li><p>PS：我说几个git 命令，你看你了解了吗。</p>
+<p> git remote -v<br> git branch -v<br> git log –oneline –decorate<br> git add .<br> git commit -m “msg”<br> git log –pretty=format:”%h %s” –graph<br> git merge branch_name<br><a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E4%BA
+%8E%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6" target="_blank" rel="external">有一个不了解的就点我</a>  然后至少看到3.5再继续下面的。因为有好多问题就是</p>
+</li>
+</ul>
+<p>git 本地仓库管理方面的问题。</p>
+<ul>
+<li>在进行下一步的 git push heroku master 时，会报错，其中的一些报错前面我已经说过了。但你还</li>
+</ul>
+<p>是有可能遇到一些我没提到的报错。这时： **你要一行一行的认真看报错信息。提取关键信息，then </p>
+<p>google it .**</p>
+<hr>
+<p>后来这几步，我也遇到了 报错。</p>
+<ul>
+<li>heroku logs </li>
+<li>提取关键错误信息</li>
+<li>google it </li>
+</ul>
+<hr>
+<p><strong>写在后面的</strong></p>
+<ul>
+<li>Git 算是真的会了。（但是一些深层的不怎么用到的还是不会，不过不怕，用时再现学。）</li>
+<li>flask app  部署在heroku过程中用到的命令是烂熟于心了。（十几遍啊，宝宝心里苦啊。）</li>
+<li>以前学初Java时，没翻墙，用的是Bing。搜索报错信息时，往往遇到第一页，有好几个博客内容一模</li>
+</ul>
+<p>一样。当我点开一个又一个链接看到这情形，那叫一个难受啊。后来就受不了了，网上到处搜科学上网</p>
+<p>方法。最终用上了google。<strong>那叫一个爽</strong> <strong>谁用谁知道</strong></p>
+<ul>
+<li>stackoverflow 对新手，小白挺友好的，但是你最好先善用google。</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android Studio 2.0 新特性 Instant Run 相关错误]]></title>
+      <url>http://yoursite.com/2016/09/04/Android%20Studio%202.0%20%E6%96%B0%E7%89%B9%E6%80%A7%20Instant%20Run%20%E7%9B%B8%E5%85%B3%E9%94%99%E8%AF%AF/</url>
+      <content type="html"><![CDATA[<p>今天新建了个AS Project，Run 时狂报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">    Instant Run detected that the deployment target does not properly support the &apos;run-as&apos; command.</div><div class="line">``` </div><div class="line">每秒报一次，吓了我一跳。赶紧 用 adb kill 了这个进程：</div></pre></td></tr></table></figure></p>
+<p>adb kill-server<br>```<br>看报错信息，意思是懂，但是不知道如何解决。然后google，居然没找到一条相关信息。最后在知乎上看到有知友这么说：</p>
+<blockquote>
+<p>我建议初学Android开发的同学一定要关掉Instant Run, 否则一旦不知不觉的遇上了代码不生效的Bug那简直太打击学习自信了! 别问我为什么知道…</p>
+</blockquote>
+<p><strong>Setting–&gt;Build–&gt;Instant Run–&gt; Enable Instant Run to..前的对勾取消掉</strong></p>
+<p>再次Run，没问题。</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[比较全面的 科学上网 FQ教程]]></title>
+      <url>http://yoursite.com/2016/09/04/%E6%AF%94%E8%BE%83%E5%85%A8%E9%9D%A2%E7%9A%84%20%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%20FQ%E6%95%99%E7%A8%8B/</url>
+      <content type="html"><![CDATA[<p><strong>写在前面：</strong></p>
+<ul>
+<li>相比于网上的大部分同类文章，我写的还是比较简单易懂的。</li>
+<li>墙这个事，细思极恐。恐的当然不是“墙”本身，而是时间久了，一些人觉得这才是“真正的互联网”。</li>
+</ul>
+<hr>
+<p>我下面只给出可用方法，具体教程自己搜。而且下面方法针对Windows 平台。Linux/Mac的话，都用上Linux/Mac了还不会科学上网可说不过去。</p>
+<hr>
+<ul>
+<li>修改hosts方法。<a href="https://laod.org/hosts/2016-google-hosts.html" target="_blank" rel="external">具体信息看老D博客。</a><ul>
+<li>网速慢，看个网页可以,视频/下载文件够呛。 </li>
+<li>有时候，可用的google IP会被防火墙检测到，进而加到屏蔽列表里。所以，这个hosts文件就需要经常更新，如何更新呢？其实就是检测谷歌IP—测试是否可用—加到文件里。这一任务挺重复且重，所以最宜交给脚本程序来搞定了（有能力的可以自己来，懒的话Github找现成的）</li>
+</ul>
+</li>
+<li>翻墙软件“自由门”<ul>
+<li>网速大部分时间都比较快，这时YouTube视频是没问题的。</li>
+</ul>
+</li>
+<li>Lantern(蓝灯）<ul>
+<li><a href="http://pan.baidu.com/s/1hsCs3pa" target="_blank" rel="external">如果此处链接失效，关键词Github Lantern自行搜索</a> 密码：ypf9</li>
+<li>傻瓜化操作，网速大部分时间挺快。视频没问题。</li>
+</ul>
+</li>
+<li>XX-Net<ul>
+<li>网速快，较稳定。</li>
+<li>需要一些设置。<a href="https://github.com/XX-net/XX-Net/wiki/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3" target="_blank" rel="external">参见中文文档</a></li>
+</ul>
+</li>
+<li>购买VPN服务<ul>
+<li>比上面的都稳定，网速也很快。就是第一次配置时较麻烦。</li>
+</ul>
+</li>
+<li>自己架设VPN<ul>
+<li>稳定性和网速 和架设者本人有紧密的关系。</li>
+</ul>
+</li>
+<li>Tor <ul>
+<li>安全性<strong>很高</strong>。就算你用它来做坏事，也基本不会出问题。当然作为一名社会主义建设者，你是不该做坏事的。</li>
+<li>网速快慢和使用的网桥不同而不同。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>博主推荐：</strong></p>
+<ul>
+<li>Windows平台： lantern</li>
+<li>Mac/Linux 平台： XX-Net</li>
+</ul>
+]]></content>
+    </entry>
+    
+  
+  
+</search>
