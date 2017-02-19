@@ -4,6 +4,30 @@
   
     
     <entry>
+      <title><![CDATA[谈谈我对cookie和signedCookie的理解]]></title>
+      <url>http://yoursite.com/2017/02/19/%E8%B0%88%E8%B0%88%E6%88%91%E5%AF%B9cookie%E5%92%8CsignedCookie%E7%9A%84%E7%90%86%E8%A7%A3/</url>
+      <content type="html"><![CDATA[<p><strong>写在前面</strong></p>
+<p>今天打算给我的<a href="https://github.com/shuiRong/login-register" target="_blank" rel="external">登录注册模块</a>完善功能,加上记录用户的登录状态(就是用户只需要在第一次登录网站时输入密码,以后不用输入了).只知道可能和sessoin/cookie有关系.但我一直对这两个名词代表着什么不了解.别惊讶,之前真的一点也不了解.今天正好遇到了,就谷歌了很多博文看.然后写demo练习.到现在为止,掌握的程度已经能满足需求了.</p>
+<p>趁这次机会,把我对 <code>cookie/session/signedCookie</code> 的理解记录下来.因为一旦不用,立马就忘了…</p>
+<p><strong>#正文</strong></p>
+<ol>
+<li>cookie: 本质是存储在客户端(约等于浏览器)的键值对.一般用来记录用户在这个网站的状态信息.</li>
+<li>session: 本质是存储在服务器端的键值对,也是一般用来记录用户在这个网站的一些信息.</li>
+<li>signedCookie: 签过名的cookie , 也可以理解为进行了加密处理的cookie.</li>
+</ol>
+<hr>
+<p><strong>举个生动的例子:</strong></p>
+<p>小明打开一个网站,在输入帐号密码后,点击登录按钮.服务器端在判断小明输入的帐号密码都没问题后,把小明的用户名: xiaoming 和年龄: 13 和一个”随机生成的”字符串: zxljckajsdlasm 用加密算法(比如MD5) 加密,生成了一个 16进制字符串 20859b490041d5b0cc4836342a22c3a7 然后服务器把 {username: ‘xiaoming’,age:’13’,connect.sid:’20859b490041d5b0cc4836342a22c3a7’} 发送给了客户端的cookie保存起来(cookie的期限可以设定为30天).<br>第二天,小明又想登录这个网站,页面加载的同时,浏览器就把这个网站的cookie发送到了服务器端,服务器拿到cookie之后,把里面的用户名和年龄取出来和之前的那个字符串放一起,再用MD5加密,把新生成的字符串和cookie里的connect.sid作对比,如果一样,就说明一切正常,正在打开网站的这个人是xiaoming,而不是xiaohong.</p>
+<p><em>上面例子中 把cookie和字符串放到一起加密并且把加密后的字符串加入到cookie里 这一过程,就叫signedCookie</em></p>
+<p>为什么说signedCookie比普通的cookie要更安全呢?关键就是加密这一步!</p>
+<p><strong>再举个生动的例子:</strong></p>
+<p>假如李华是黑客,想登录某(上面那个)网站的小明的帐号,就想办法把这个网站的cookie里的username和age改成了小明的.但是,这是行不通的!因为服务器端针对每个用户都生成过一个随机的字符串,虽然cookie的username和age改了,但是服务器端在加密的时候用的可不是小明的那个字符串,所以加密结果也不可能和正确的一样.所以cookie信息就不怕别修改了.</p>
+<p><strong>附加</strong><br>认真的考虑了signedCookie,我有一点还有疑问: 那就是服务器端是依据什么判断而去使用某个”随机字符串”的?根据IP地址?还是浏览器的request信息?还是其他的我不知道的某个东西?<br>如果这个问题解决了,关于signedCookie,我就没有疑问了!<br>但是 How?</p>
+<p>希望有知道解决方法的不吝赐教!</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Express/MongoDB/登录注册模块]]></title>
       <url>http://yoursite.com/2017/02/19/Express-MongoDB-%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97/</url>
       <content type="html"><![CDATA[<p><strong>写在前面</strong><br>为了练习Express.js框架，写了个<a href="https://github.com/shuiRong/Ask-Answer" target="_blank" rel="external">问答网站</a>。最近打算把登录注册功能添加上。所以另外开了个repo,先单独实现下这个功能。</p>
@@ -198,101 +222,6 @@
       <url>http://yoursite.com/2016/09/04/%E8%BF%99%E4%BA%9B%E5%B9%B4%E8%AF%BB%E4%B9%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E7%A0%B4%E4%BA%8B%E5%84%BF/</url>
       <content type="html"><![CDATA[<p>早就想找个机会写写我这些年读书的破事儿了，一次在知乎上看到了个关于“阅读困难症”的问题，就顺便着总结了这些年（其实是从6、7岁开始）读书的经历。</p>
 <p>这里不复制过来了。<a href="https://www.zhihu.com/question/31566591/answer/106730426" target="_blank" rel="external">贴个链接</a>，诸君过去看吧。看完觉得不错，就点个赞吧。</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Android Studio 2.0 新特性 Instant Run 相关错误]]></title>
-      <url>http://yoursite.com/2016/09/04/Android%20Studio%202.0%20%E6%96%B0%E7%89%B9%E6%80%A7%20Instant%20Run%20%E7%9B%B8%E5%85%B3%E9%94%99%E8%AF%AF/</url>
-      <content type="html"><![CDATA[<p>今天新建了个AS Project，Run 时狂报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">    Instant Run detected that the deployment target does not properly support the &apos;run-as&apos; command.</div><div class="line">``` </div><div class="line">每秒报一次，吓了我一跳。赶紧 用 adb kill 了这个进程：</div></pre></td></tr></table></figure></p>
-<p>adb kill-server<br>```<br>看报错信息，意思是懂，但是不知道如何解决。然后google，居然没找到一条相关信息。最后在知乎上看到有知友这么说：</p>
-<blockquote>
-<p>我建议初学Android开发的同学一定要关掉Instant Run, 否则一旦不知不觉的遇上了代码不生效的Bug那简直太打击学习自信了! 别问我为什么知道…</p>
-</blockquote>
-<p><strong>Setting–&gt;Build–&gt;Instant Run–&gt; Enable Instant Run to..前的对勾取消掉</strong></p>
-<p>再次Run，没问题。</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[JavaScript：当实参多于形参时的处理方法]]></title>
-      <url>http://yoursite.com/2016/09/04/JavaScript%EF%BC%9A%E5%BD%93%E5%AE%9E%E5%8F%82%E5%A4%9A%E4%BA%8E%E5%BD%A2%E5%8F%82%E6%97%B6%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/</url>
-      <content type="html"><![CDATA[<ul>
-<li>如果你调用一个函数，当这个函数的参数数量比它显式声明的参数数量更多的时候，你就可以使用 arguments 对象。</li>
-<li>这个技术对于参数数量是一个可变量的函数来说比较有用。</li>
-<li>你可以用 arguments.length 来得到参数的数量，然后可以用 arguments object 来对每个参数进行处理。 (想要得到当一个函数定义时的该函数的参数数量, 请使用 Function.length 属性。)</li>
-</ul>
-<p>文档：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments</a></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[比较全面的 科学上网 FQ教程]]></title>
-      <url>http://yoursite.com/2016/09/04/%E6%AF%94%E8%BE%83%E5%85%A8%E9%9D%A2%E7%9A%84%20%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%20FQ%E6%95%99%E7%A8%8B/</url>
-      <content type="html"><![CDATA[<p><strong>写在前面：</strong></p>
-<ul>
-<li>相比于网上的大部分同类文章，我写的还是比较简单易懂的。</li>
-<li>墙这个事，细思极恐。恐的当然不是“墙”本身，而是时间久了，一些人觉得这才是“真正的互联网”。</li>
-</ul>
-<hr>
-<p>我下面只给出可用方法，具体教程自己搜。而且下面方法针对Windows 平台。Linux/Mac的话，都用上Linux/Mac了还不会科学上网可说不过去。</p>
-<hr>
-<ul>
-<li>修改hosts方法。<a href="https://laod.org/hosts/2016-google-hosts.html" target="_blank" rel="external">具体信息看老D博客。</a><ul>
-<li>网速慢，看个网页可以,视频/下载文件够呛。 </li>
-<li>有时候，可用的google IP会被防火墙检测到，进而加到屏蔽列表里。所以，这个hosts文件就需要经常更新，如何更新呢？其实就是检测谷歌IP—测试是否可用—加到文件里。这一任务挺重复且重，所以最宜交给脚本程序来搞定了（有能力的可以自己来，懒的话Github找现成的）</li>
-</ul>
-</li>
-<li>翻墙软件“自由门”<ul>
-<li>网速大部分时间都比较快，这时YouTube视频是没问题的。</li>
-</ul>
-</li>
-<li>Lantern(蓝灯）<ul>
-<li><a href="http://pan.baidu.com/s/1hsCs3pa" target="_blank" rel="external">如果此处链接失效，关键词Github Lantern自行搜索</a> 密码：ypf9</li>
-<li>傻瓜化操作，网速大部分时间挺快。视频没问题。</li>
-</ul>
-</li>
-<li>XX-Net<ul>
-<li>网速快，较稳定。</li>
-<li>需要一些设置。<a href="https://github.com/XX-net/XX-Net/wiki/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3" target="_blank" rel="external">参见中文文档</a></li>
-</ul>
-</li>
-<li>购买VPN服务<ul>
-<li>比上面的都稳定，网速也很快。就是第一次配置时较麻烦。</li>
-</ul>
-</li>
-<li>自己架设VPN<ul>
-<li>稳定性和网速 和架设者本人有紧密的关系。</li>
-</ul>
-</li>
-<li>Tor <ul>
-<li>安全性<strong>很高</strong>。就算你用它来做坏事，也基本不会出问题。当然作为一名社会主义建设者，你是不该做坏事的。</li>
-<li>网速快慢和使用的网桥不同而不同。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p><strong>博主推荐：</strong></p>
-<ul>
-<li>Windows平台： lantern</li>
-<li>Mac/Linux 平台： XX-Net</li>
-</ul>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[AndroidStudio 模拟器选择问题]]></title>
-      <url>http://yoursite.com/2016/09/04/AndroidStudio%20%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%80%89%E6%8B%A9%E9%97%AE%E9%A2%98/</url>
-      <content type="html"><![CDATA[<p>部署好安卓开发环境后，发现：</p>
-<ul>
-<li>Windows下 AMD 的处理器居然没法使用 Android Studio自带 的模拟器</li>
-</ul>
-<p>网上查了一波： windows系统下用 Intel 的处理器才能使用AS自带的模拟器。</p>
-<ul>
-<li>但是linux平台下AS，可以用AMD的CPU启动AS自带模拟器。</li>
-</ul>
-<p>暂时不打算买Intel的处理器，而且不打算装Linux系统。也不想用虚拟机装双系统，身边跟没有Android手机可以用……</p>
-<p>后来无意中发现一神器：Genymotion 。成功的解决了Windows+AMD的CPU 的Android模拟器问题</p>
 ]]></content>
     </entry>
     
@@ -502,6 +431,101 @@ heroku/6589" target="_blank" rel="external">这个位置有两张图，点我看
 <pre><code>* 字面量定义。（不可以使用变量。）
 * 正则对象定义。（可以使用变量。）
 </code></pre><p>文档：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[比较全面的 科学上网 FQ教程]]></title>
+      <url>http://yoursite.com/2016/09/04/%E6%AF%94%E8%BE%83%E5%85%A8%E9%9D%A2%E7%9A%84%20%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%20FQ%E6%95%99%E7%A8%8B/</url>
+      <content type="html"><![CDATA[<p><strong>写在前面：</strong></p>
+<ul>
+<li>相比于网上的大部分同类文章，我写的还是比较简单易懂的。</li>
+<li>墙这个事，细思极恐。恐的当然不是“墙”本身，而是时间久了，一些人觉得这才是“真正的互联网”。</li>
+</ul>
+<hr>
+<p>我下面只给出可用方法，具体教程自己搜。而且下面方法针对Windows 平台。Linux/Mac的话，都用上Linux/Mac了还不会科学上网可说不过去。</p>
+<hr>
+<ul>
+<li>修改hosts方法。<a href="https://laod.org/hosts/2016-google-hosts.html" target="_blank" rel="external">具体信息看老D博客。</a><ul>
+<li>网速慢，看个网页可以,视频/下载文件够呛。 </li>
+<li>有时候，可用的google IP会被防火墙检测到，进而加到屏蔽列表里。所以，这个hosts文件就需要经常更新，如何更新呢？其实就是检测谷歌IP—测试是否可用—加到文件里。这一任务挺重复且重，所以最宜交给脚本程序来搞定了（有能力的可以自己来，懒的话Github找现成的）</li>
+</ul>
+</li>
+<li>翻墙软件“自由门”<ul>
+<li>网速大部分时间都比较快，这时YouTube视频是没问题的。</li>
+</ul>
+</li>
+<li>Lantern(蓝灯）<ul>
+<li><a href="http://pan.baidu.com/s/1hsCs3pa" target="_blank" rel="external">如果此处链接失效，关键词Github Lantern自行搜索</a> 密码：ypf9</li>
+<li>傻瓜化操作，网速大部分时间挺快。视频没问题。</li>
+</ul>
+</li>
+<li>XX-Net<ul>
+<li>网速快，较稳定。</li>
+<li>需要一些设置。<a href="https://github.com/XX-net/XX-Net/wiki/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3" target="_blank" rel="external">参见中文文档</a></li>
+</ul>
+</li>
+<li>购买VPN服务<ul>
+<li>比上面的都稳定，网速也很快。就是第一次配置时较麻烦。</li>
+</ul>
+</li>
+<li>自己架设VPN<ul>
+<li>稳定性和网速 和架设者本人有紧密的关系。</li>
+</ul>
+</li>
+<li>Tor <ul>
+<li>安全性<strong>很高</strong>。就算你用它来做坏事，也基本不会出问题。当然作为一名社会主义建设者，你是不该做坏事的。</li>
+<li>网速快慢和使用的网桥不同而不同。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>博主推荐：</strong></p>
+<ul>
+<li>Windows平台： lantern</li>
+<li>Mac/Linux 平台： XX-Net</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JavaScript：当实参多于形参时的处理方法]]></title>
+      <url>http://yoursite.com/2016/09/04/JavaScript%EF%BC%9A%E5%BD%93%E5%AE%9E%E5%8F%82%E5%A4%9A%E4%BA%8E%E5%BD%A2%E5%8F%82%E6%97%B6%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<ul>
+<li>如果你调用一个函数，当这个函数的参数数量比它显式声明的参数数量更多的时候，你就可以使用 arguments 对象。</li>
+<li>这个技术对于参数数量是一个可变量的函数来说比较有用。</li>
+<li>你可以用 arguments.length 来得到参数的数量，然后可以用 arguments object 来对每个参数进行处理。 (想要得到当一个函数定义时的该函数的参数数量, 请使用 Function.length 属性。)</li>
+</ul>
+<p>文档：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[AndroidStudio 模拟器选择问题]]></title>
+      <url>http://yoursite.com/2016/09/04/AndroidStudio%20%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%80%89%E6%8B%A9%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<p>部署好安卓开发环境后，发现：</p>
+<ul>
+<li>Windows下 AMD 的处理器居然没法使用 Android Studio自带 的模拟器</li>
+</ul>
+<p>网上查了一波： windows系统下用 Intel 的处理器才能使用AS自带的模拟器。</p>
+<ul>
+<li>但是linux平台下AS，可以用AMD的CPU启动AS自带模拟器。</li>
+</ul>
+<p>暂时不打算买Intel的处理器，而且不打算装Linux系统。也不想用虚拟机装双系统，身边跟没有Android手机可以用……</p>
+<p>后来无意中发现一神器：Genymotion 。成功的解决了Windows+AMD的CPU 的Android模拟器问题</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android Studio 2.0 新特性 Instant Run 相关错误]]></title>
+      <url>http://yoursite.com/2016/09/04/Android%20Studio%202.0%20%E6%96%B0%E7%89%B9%E6%80%A7%20Instant%20Run%20%E7%9B%B8%E5%85%B3%E9%94%99%E8%AF%AF/</url>
+      <content type="html"><![CDATA[<p>今天新建了个AS Project，Run 时狂报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">    Instant Run detected that the deployment target does not properly support the &apos;run-as&apos; command.</div><div class="line">``` </div><div class="line">每秒报一次，吓了我一跳。赶紧 用 adb kill 了这个进程：</div></pre></td></tr></table></figure></p>
+<p>adb kill-server<br>```<br>看报错信息，意思是懂，但是不知道如何解决。然后google，居然没找到一条相关信息。最后在知乎上看到有知友这么说：</p>
+<blockquote>
+<p>我建议初学Android开发的同学一定要关掉Instant Run, 否则一旦不知不觉的遇上了代码不生效的Bug那简直太打击学习自信了! 别问我为什么知道…</p>
+</blockquote>
+<p><strong>Setting–&gt;Build–&gt;Instant Run–&gt; Enable Instant Run to..前的对勾取消掉</strong></p>
+<p>再次Run，没问题。</p>
 ]]></content>
     </entry>
     
