@@ -15,5 +15,6 @@ function listen(){
     });
     $('#cancelBtn').click(function(){
         $('#downloadSec').css('visibility','hidden');
-    })
+    });
+    //移动端,根据屏幕高度设置div高
 }
