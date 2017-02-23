@@ -189,16 +189,14 @@ a:hover{
         letter-spacing:5px;
     }
     #mobileP3{
-        margin-top:250px;
         border:1px solid #DDD;
         width:200px;
         height:20px;
         border-color:grey;
         border-radius:10px;
-        margin-left:auto;
-        margin-right:auto;
+        margin: 250px auto 0 auto;
         letter-spacing:2px;
-        padding-top:1px;
+        padding-top:3px;
     }
     #mobileDownload{
         width:200px;
