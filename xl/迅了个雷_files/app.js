@@ -1,3 +1,6 @@
+//  phone-img /static/images/template/gray/gray_mobile_bg.png
+
+
 var App = function () {
 
     function handleBootstrap() {
