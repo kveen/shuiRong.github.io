@@ -5,6 +5,9 @@
 html{
     font-size:12px;
 }
+body{
+    background: #F6F6F6;
+}
 #mainSec{
     background-image:url('../images/wallpaper.png');
     background-position:100% 100%;
