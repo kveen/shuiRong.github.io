@@ -1,4 +1,20 @@
 /*---post.jade---*/
+@media (max-width:350px){
+    html{
+        font-size:15px;
+    }
+    #postContainer{
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+@media (min-width:800px){
+    #postContainer{
+        width:50%;
+        padding: 3rem;
+        margin:0 auto; 
+    }
+}
 
 #postTop{
     text-align:center;
