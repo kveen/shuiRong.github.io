@@ -24,7 +24,7 @@ body{
         width:9rem;
     }
     #postContainer{
-        width: 80%;
+        padding: 1rem 20px;
         
     }
 }
