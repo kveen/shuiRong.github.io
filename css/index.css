@@ -24,7 +24,7 @@ body{
         width:9rem;
     }
     #postContainer{
-       margin: 1rem;
+       width: 90%;
     }
 }
 @media (min-width:800px){
