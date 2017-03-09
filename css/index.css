@@ -32,7 +32,8 @@ body{
         width:30%;
     }
     #postContainer{
-        width:50%;
+        width:50%;   
+        padding: 3rem;
     }
     
 }
