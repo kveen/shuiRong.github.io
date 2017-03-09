@@ -1,8 +1,5 @@
 /*---post.jade---*/
-#postContainer{
-    /*width:45rem;移动端适配点*/ 
-    margin:0 auto; 
-}
+
 #postTop{
     text-align:center;
 }
