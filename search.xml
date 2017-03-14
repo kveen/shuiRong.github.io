@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title><![CDATA[Ubuntu1604安装Pantheon桌面环境]]></title>
+      <url>http://yoursite.com/2017/03/14/Ubuntu1604%E5%AE%89%E8%A3%85Pantheon%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83/</url>
+      <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><blockquote>
+<p>首先，我已经装上并用了一天了，没发现甚么问题．（但不代表你安装就不会出现问题．所以提前备份重要文件还是有必要的）<br>下面让我们来安装这个号称Linux最漂亮的一款桌面环境吧．(Unity党表示不服)</p>
+</blockquote>
+<p>在终端输入以下的命令：</p>
+<pre><code>$ sudo add-apt-repository ppa:elementary-os/daily
+$ sudo add-apt-repository ppa:elementary-os/os-patches
+$ sudo add-apt-repository ppa:elementary-os/testing
+$ sudo add-apt-repository ppa:mpstark/elementary-tweaks-daily
+$ sudo apt-get update
+$ sudo apt-get dist-upgrade
+$ sudo apt-get install elementary-theme elementary-icon-theme elementary-default-settings elementary-desktop
+</code></pre><p>从 Elementary OS　官方源安装Pantheon桌面环境的话: (我用的是上面的，一次就ok了，所以下面这个方法没有测试，想来也不会有什么问题)</p>
+<pre><code>$ sudo add-apt-repository ppa:elementary-os/stable
+$ sudo apt-get update
+$ sudo apt-get install elementary-desktop
+</code></pre><p><strong>然后重启，在登录窗口选择Pantheon就好了．(注意如果你设置了开机不需要登录的话，关掉它.)</strong></p>
+<p>Good luck!</p>
+<p><a href="https://askubuntu.com/questions/766673/pantheon-on-ubuntu-16-04" target="_blank" rel="external">命令来源</a></p>
+<hr>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键:"></a>快捷键:</h3><p><strong>所有的快捷键都可以在系统的 Settings –&gt; Keyboard 里自行设置</strong></p>
+<p>Win + W　: 程序窗口预览<br>Win + A : 程序窗口预览（涉及所有桌面）<br>Win + Tab : 转换桌面窗口<br>Win + S : 打开左上角的应用搜索窗口<br>Ctrl + Win + 方向键 : 改变当前应用窗口的形状<br>Win + L : 锁屏</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[谈谈我对cookie和signedCookie的理解]]></title>
       <url>http://yoursite.com/2017/02/19/%E8%B0%88%E8%B0%88%E6%88%91%E5%AF%B9cookie%E5%92%8CsignedCookie%E7%9A%84%E7%90%86%E8%A7%A3/</url>
       <content type="html"><![CDATA[<p><strong>写在前面</strong></p>
@@ -339,6 +366,18 @@ heroku/6589" target="_blank" rel="external">这个位置有两张图，点我看
     </entry>
     
     <entry>
+      <title><![CDATA[Javascript：正则表达式里使用变量的方法]]></title>
+      <url>http://yoursite.com/2016/09/04/Javascript%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%87%8C%E4%BD%BF%E7%94%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p>﻿</p>
+<p>做FFC算法题的时候，想把变量用到正则模式里。结果在正则字面量里，不论如何加都是不行的，正则模式都会把变量当作表面上的字符串来处理。</p>
+<p>只好用Google大法了，找到办法：<br>正则有两种定义方法：</p>
+<pre><code>* 字面量定义。（不可以使用变量。）
+* 正则对象定义。（可以使用变量。）
+</code></pre><p>文档：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[比较全面的 科学上网 FQ教程]]></title>
       <url>http://yoursite.com/2016/09/04/%E6%AF%94%E8%BE%83%E5%85%A8%E9%9D%A2%E7%9A%84%20%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%20FQ%E6%95%99%E7%A8%8B/</url>
       <content type="html"><![CDATA[<p><strong>写在前面：</strong></p>
@@ -389,18 +428,6 @@ heroku/6589" target="_blank" rel="external">这个位置有两张图，点我看
 <li>Windows平台： lantern</li>
 <li>Mac/Linux 平台： XX-Net</li>
 </ul>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Javascript：正则表达式里使用变量的方法]]></title>
-      <url>http://yoursite.com/2016/09/04/Javascript%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%87%8C%E4%BD%BF%E7%94%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-      <content type="html"><![CDATA[<p>﻿</p>
-<p>做FFC算法题的时候，想把变量用到正则模式里。结果在正则字面量里，不论如何加都是不行的，正则模式都会把变量当作表面上的字符串来处理。</p>
-<p>只好用Google大法了，找到办法：<br>正则有两种定义方法：</p>
-<pre><code>* 字面量定义。（不可以使用变量。）
-* 正则对象定义。（可以使用变量。）
-</code></pre><p>文档：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions</a></p>
 ]]></content>
     </entry>
     
