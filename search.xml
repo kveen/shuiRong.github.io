@@ -27,6 +27,12 @@ $ sudo apt-get install elementary-desktop
 <hr>
 <h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键:"></a>快捷键:</h3><p><strong>所有的快捷键都可以在系统的 Settings –&gt; Keyboard 里自行设置</strong></p>
 <p>Win + W　: 程序窗口预览<br>Win + A : 程序窗口预览（涉及所有桌面）<br>Win + Tab : 转换桌面窗口<br>Win + S : 打开左上角的应用搜索窗口<br>Ctrl + Win + 方向键 : 改变当前应用窗口的形状<br>Win + L : 锁屏</p>
+<hr>
+<h3 id="两天后再记："><a href="#两天后再记：" class="headerlink" title="两天后再记："></a>两天后再记：</h3><p><strong>如何卸载Pantheon桌面环境？</strong></p>
+<p>安装一个包管理工具：<code>sudo apt-get install synaptic</code><br>管理员权限运行：　<code>sudo synaptic</code><br>搜索 <code>elementary</code><br>把所有被选中的方格全部标记为　<code>完全移除（complete removal）</code><br>然后　<code>应用（Apply）</code><br><code>DONE!</code></p>
+<p><a href="https://askubuntu.com/questions/228996/how-to-remove-elementary-desktop-environment" target="_blank" rel="external">命令来源</a></p>
+<hr>
+<p>是的，我又换回了Ubuntu自带的Unity…因为发现除了Pantheon的外观，其他的诸如多桌面，切换应用,应用不能缩下去．．．都不习惯，sigh.<br>果然，Linux的DE有毒．</p>
 ]]></content>
     </entry>
     
