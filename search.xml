@@ -4,6 +4,49 @@
   
     
     <entry>
+      <title><![CDATA[12行代码实现一个Web版Markdown编辑器: 实时预览]]></title>
+      <url>http://yoursite.com/2017/03/16/12%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAWeb%E7%89%88Markdown%E7%BC%96%E8%BE%91%E5%99%A8-%E5%AE%9E%E6%97%B6%E9%A2%84%E8%A7%88/</url>
+      <content type="html"><![CDATA[<p>首先，我承认标题党的嫌疑是逃不掉的了．．．但是，诸君请继续看下去，就会发现还是有干货的</p>
+<hr>
+<blockquote>
+<p><strong>源码</strong>：<a href="https://github.com/shuiRong/markdownEditor" target="_blank" rel="external">https://github.com/shuiRong/markdownEditor</a> <strong>Demo</strong>：<a href="https://shuirong.github.io/src/" target="_blank" rel="external">https://shuirong.github.io/src/</a></p>
+</blockquote>
+<p>写这个Markdown编辑器的<strong>难点有两个</strong>：<br>1.对文本进行Markdown语法的解析 2.实时检测页面文本变化．</p>
+<ul>
+<li>针对１，我在Gayhub上找到了<a href="https://github.com/chjj/marked" target="_blank" rel="external">markedJS</a>，看README就能很快地上手．</li>
+<li>针对２，我选择的是<a href="https://cn.vuejs.org/" target="_blank" rel="external">VueJS</a>，因为我看中了她的双向绑定特性（当然数据和视图间的单向绑定就够了）．而且VueJS非常轻量，简单容易上手不说，中文文档简直业界良心．<br><strong>注：</strong>代码高亮部分我用的是<a href="https://highlightjs.org/" target="_blank" rel="external">highlight.js</a></li>
+</ul>
+<p><em>index.html</em></p>
+<pre><code>&lt;div id=&#39;container&#39;&gt;
+        &lt;textarea id=&#39;editor&#39; v-model=&#39;text&#39;&gt;
+        &lt;/textarea&gt;
+        &lt;div id=&#39;server&#39; v-html=&#39;markedText&#39;&gt;  
+        &lt;/div&gt;
+    &lt;/div&gt;
+</code></pre><p><em>main.js</em></p>
+<pre><code>var vm = new Vue({
+    el: &#39;#container&#39;,
+    data: {
+        text: &#39;&#39;
+    },
+    computed: {
+        markedText: function(){
+            return marked(this.text);
+        }
+    }
+});
+</code></pre><p><strong>核心部分就是这些了．再自定义下相关CSS,一个支持实时预览的Markdown编辑器就搞定了．</strong></p>
+<hr>
+<p>这么简单？当然不能这么说．因为最难的markdown语法解析和实时预览部分引用了别处的代码．如果都是自己实现的话，够喝一壶的了．</p>
+<p>既然说到这里，那就聊聊MD语法解析和数据的双向绑定的实现．</p>
+<ul>
+<li>MD语法解析：简单实现玩玩的话，基本的HTML/CSS/JS，主要正则玩的溜就够了．</li>
+<li>实时预览的重点在于数据和视图间的单向绑定．进一步介绍看<a href="https://zhuanlan.zhihu.com/p/25464162" target="_blank" rel="external">这里</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Ubuntu1604安装Pantheon桌面环境]]></title>
       <url>http://yoursite.com/2017/03/14/Ubuntu1604%E5%AE%89%E8%A3%85Pantheon%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83/</url>
       <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><blockquote>

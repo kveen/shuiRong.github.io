@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>markdown editor</title>
     <link rel='stylesheet' href='./stylesheets/main.css' />
+    <link rel="stylesheet"href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/monokai_sublime.min.css">
 </head>
 <body >
     <div id='container'>
@@ -14,11 +15,12 @@
         <div id='server' v-html='markedText'>  
         </div>
     </div>
-    <script src='./javascripts/jquery.min.js'></script>
+    <!--<script src='./javascripts/jquery.min.js'></script>-->
     <script src='./javascripts/vue.js'></script>
     <script src='./javascripts/marked.min.js'></script>
-    <script src='./javascripts/markdown_dom_parser.js'></script>
-    <script src='./javascripts/html2markdown.js'></script>
+    <script src='./javascripts/highlight.min.js'></script>
+<!--    <script src='./javascripts/markdown_dom_parser.js'></script>
+    <script src='./javascripts/html2markdown.js'></script>-->
     <script src='./javascripts/main.js'></script>
 </body>
 </html>
